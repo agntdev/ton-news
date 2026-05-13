@@ -46,6 +46,11 @@ tasks/                   Bounty task specs (T01.md … T16.md)
 - [`MODERATION_POLICY.md`](MODERATION_POLICY.md) defines report intake, triage,
   moderation workflow, appeals, and moderator note templates.
 
+## Roadmap
+
+[`ROADMAP.md`](ROADMAP.md) tracks current gaps, 30/60/90-day priorities,
+success metrics, and the review cadence for future content and feature work.
+
 ## Conventions
 
 - **Pages:** Server components by default. Mark client components with `'use client'`.
