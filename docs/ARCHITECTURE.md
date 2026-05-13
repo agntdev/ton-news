@@ -30,6 +30,15 @@ docs/                    Project docs
 tasks/                   Bounty task specs (T01.md … T16.md)
 ```
 
+## Editorial operations
+
+- [`CONTENT_CALENDAR.md`](CONTENT_CALENDAR.md) defines the weekly publishing
+  rhythm, topic pillars, starter calendar, and article brief template.
+- [`EDITORIAL_GUIDELINES.md`](EDITORIAL_GUIDELINES.md) defines style,
+  sourcing, SEO, and submission standards.
+- [`REVIEW_PROCESS.md`](REVIEW_PROCESS.md) defines roles, moderation steps,
+  review criteria, and decision notes.
+
 ## Conventions
 
 - **Pages:** Server components by default. Mark client components with `'use client'`.
