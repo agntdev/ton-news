@@ -37,6 +37,7 @@ Editorial operations:
 - [`docs/CONTENT_AUTOMATION.md`](docs/CONTENT_AUTOMATION.md) defines scheduled publishing, backups, and recovery.
 - [`docs/EDITORIAL_GUIDELINES.md`](docs/EDITORIAL_GUIDELINES.md) defines the style, sourcing, SEO, and submission standards.
 - [`docs/ANALYTICS.md`](docs/ANALYTICS.md) defines privacy-friendly tracking and SEO reporting.
+- [`docs/SEO_REPORTING.md`](docs/SEO_REPORTING.md) defines SEO metrics reporting and alerts.
 - [`docs/QUALITY_CONTROL.md`](docs/QUALITY_CONTROL.md) defines automated submission quality checks and reporting.
 - [`docs/PERFORMANCE.md`](docs/PERFORMANCE.md) defines performance optimizations, mobile checks, and budgets.
 - [`docs/REVIEW_PROCESS.md`](docs/REVIEW_PROCESS.md) defines the submission review workflow and approval checklist.

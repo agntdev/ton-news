@@ -42,6 +42,8 @@ tasks/                   Bounty task specs (T01.md … T16.md)
   sourcing, SEO, and submission standards.
 - [`ANALYTICS.md`](ANALYTICS.md) defines privacy-friendly page-view tracking,
   SEO reporting, and dashboard operations.
+- [`SEO_REPORTING.md`](SEO_REPORTING.md) defines article SEO scoring,
+  reporting, and alert checks.
 - [`QUALITY_CONTROL.md`](QUALITY_CONTROL.md) defines automated submission
   quality checks, scoring, and moderation queue reporting.
 - [`PERFORMANCE.md`](PERFORMANCE.md) defines caching, mobile responsiveness,
