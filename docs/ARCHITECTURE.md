@@ -36,6 +36,8 @@ tasks/                   Bounty task specs (T01.md … T16.md)
   rhythm, topic pillars, starter calendar, and article brief template.
 - [`EDITORIAL_GUIDELINES.md`](EDITORIAL_GUIDELINES.md) defines style,
   sourcing, SEO, and submission standards.
+- [`QUALITY_CONTROL.md`](QUALITY_CONTROL.md) defines automated submission
+  quality checks, scoring, and moderation queue reporting.
 - [`REVIEW_PROCESS.md`](REVIEW_PROCESS.md) defines roles, moderation steps,
   review criteria, and decision notes.
 
