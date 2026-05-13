@@ -5,6 +5,7 @@ const NAV = [
   { href: '/articles', label: 'Articles' },
   { href: '/about', label: 'About' },
   { href: '/submit', label: 'Submit' },
+  { href: '/analytics', label: 'Analytics' },
 ]
 
 export function SiteHeader() {
