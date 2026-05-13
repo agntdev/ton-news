@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { AnalyticsTracker } from '@/components/analytics-tracker'
 import { SiteHeader } from '@/components/site-header'
 import { SiteFooter } from '@/components/site-footer'
@@ -37,6 +37,13 @@ export const metadata: Metadata = {
     description: SITE_DESCRIPTION,
   },
   robots: { index: true, follow: true },
+}
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  viewportFit: 'cover',
+  themeColor: '#0098EA',
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

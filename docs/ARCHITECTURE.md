@@ -44,6 +44,8 @@ tasks/                   Bounty task specs (T01.md … T16.md)
   SEO reporting, and dashboard operations.
 - [`QUALITY_CONTROL.md`](QUALITY_CONTROL.md) defines automated submission
   quality checks, scoring, and moderation queue reporting.
+- [`PERFORMANCE.md`](PERFORMANCE.md) defines caching, mobile responsiveness,
+  and release performance checks.
 - [`REVIEW_PROCESS.md`](REVIEW_PROCESS.md) defines roles, moderation steps,
   review criteria, and decision notes.
 
