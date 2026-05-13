@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { listPublishedArticles } from '@/lib/articles'
 import { ArticleCard } from '@/components/article-card'
+import { SITE_DESCRIPTION, SITE_NAME, absoluteUrl } from '@/lib/seo'
 
 export const dynamic = 'force-dynamic'
 
@@ -8,9 +9,33 @@ export default async function HomePage() {
   const articles = await listPublishedArticles()
   const featured = articles[0]
   const recent = articles.slice(1)
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'Organization',
+        '@id': `${absoluteUrl('/')}#organization`,
+        name: SITE_NAME,
+        url: absoluteUrl('/'),
+        sameAs: ['https://ton.org', 'https://github.com/agntdev/ton-news'],
+      },
+      {
+        '@type': 'WebSite',
+        '@id': `${absoluteUrl('/')}#website`,
+        name: SITE_NAME,
+        description: SITE_DESCRIPTION,
+        url: absoluteUrl('/'),
+        publisher: { '@id': `${absoluteUrl('/')}#organization` },
+      },
+    ],
+  }
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:py-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
       <section className="rounded-3xl bg-gradient-to-br from-brand to-brand-dark px-6 py-12 text-white shadow-sm sm:px-10 sm:py-16">
         <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/70">
           The Open Network · Daily

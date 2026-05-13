@@ -43,3 +43,8 @@ export async function listPublishedArticles(): Promise<Article[]> {
     b.publishedAt.localeCompare(a.publishedAt),
   )
 }
+
+export async function getArticleBySlug(slug: string): Promise<Article | null> {
+  const articles = await listPublishedArticles()
+  return articles.find((article) => article.slug === slug) ?? null
+}

@@ -1,23 +1,40 @@
 import type { Metadata } from 'next'
 import { SiteHeader } from '@/components/site-header'
 import { SiteFooter } from '@/components/site-footer'
+import { SITE_DESCRIPTION, SITE_NAME, SITE_URL, absoluteUrl } from '@/lib/seo'
 import './globals.css'
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://ton-news.example.com'),
+  metadataBase: new URL(SITE_URL),
+  applicationName: SITE_NAME,
   title: {
-    default: 'Ton News — TON blockchain updates, analysis, and ecosystem coverage',
-    template: '%s · Ton News',
+    default: `${SITE_NAME} — TON blockchain updates, analysis, and ecosystem coverage`,
+    template: `%s · ${SITE_NAME}`,
   },
-  description:
-    'Curated news, deep dives, and ecosystem updates for The Open Network (TON). SEO-focused, community-edited, hosted on TON storage.',
+  description: SITE_DESCRIPTION,
+  alternates: {
+    canonical: absoluteUrl('/'),
+  },
+  keywords: [
+    'TON blockchain',
+    'The Open Network',
+    'TON news',
+    'TON ecosystem',
+    'TON validators',
+  ],
   openGraph: {
     type: 'website',
-    siteName: 'Ton News',
-    title: 'Ton News',
-    description: 'TON blockchain news and ecosystem coverage.',
+    siteName: SITE_NAME,
+    title: SITE_NAME,
+    description: SITE_DESCRIPTION,
+    url: absoluteUrl('/'),
+    locale: 'en_US',
   },
-  twitter: { card: 'summary_large_image' },
+  twitter: {
+    card: 'summary_large_image',
+    title: SITE_NAME,
+    description: SITE_DESCRIPTION,
+  },
   robots: { index: true, follow: true },
 }
 
