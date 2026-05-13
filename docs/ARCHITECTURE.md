@@ -45,6 +45,8 @@ tasks/                   Bounty task specs (T01.md … T16.md)
 
 - [`COMMUNITY_GUIDELINES.md`](COMMUNITY_GUIDELINES.md) defines acceptable
   content, expected behavior, prohibited content, and enforcement actions.
+- [`FEEDBACK_SYSTEM.md`](FEEDBACK_SYSTEM.md) defines article feedback types,
+  review states, and public display rules.
 - [`MODERATION_POLICY.md`](MODERATION_POLICY.md) defines report intake, triage,
   moderation workflow, appeals, and moderator note templates.
 

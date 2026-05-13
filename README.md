@@ -40,6 +40,7 @@ Editorial operations:
 Community operations:
 
 - [`docs/COMMUNITY_GUIDELINES.md`](docs/COMMUNITY_GUIDELINES.md) defines acceptable content and behavior.
+- [`docs/FEEDBACK_SYSTEM.md`](docs/FEEDBACK_SYSTEM.md) defines article feedback submission and moderation.
 - [`docs/MODERATION_POLICY.md`](docs/MODERATION_POLICY.md) defines reporting, triage, enforcement, and appeals.
 
 ## Project goals

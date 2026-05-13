@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { revalidatePath } from 'next/cache'
 import { requireRole } from '@/lib/auth'
+import { listComments, setCommentStatus } from '@/lib/comments'
 import { evaluateSubmissionQuality } from '@/lib/content-quality'
 import { listSubmissions, setSubmissionStatus } from '@/lib/submissions'
 
@@ -29,6 +30,13 @@ const severityClasses = {
   critical: 'text-red-700',
 } as const
 
+const feedbackLabels = {
+  comment: 'Comment',
+  correction: 'Correction',
+  source: 'Source tip',
+  question: 'Question',
+} as const
+
 async function approve(formData: FormData) {
   'use server'
   const moderator = await requireRole('moderator')
@@ -48,11 +56,36 @@ async function reject(formData: FormData) {
   revalidatePath('/moderation')
 }
 
+async function approveComment(formData: FormData) {
+  'use server'
+  const moderator = await requireRole('moderator')
+  const id = String(formData.get('id') ?? '')
+  const articleSlug = String(formData.get('articleSlug') ?? '')
+  const note = String(formData.get('note') ?? '').trim() || undefined
+  await setCommentStatus(id, { status: 'approved', reviewerId: moderator.id, reviewNote: note })
+  revalidatePath('/moderation')
+  revalidatePath(`/articles/${articleSlug}`)
+}
+
+async function rejectComment(formData: FormData) {
+  'use server'
+  const moderator = await requireRole('moderator')
+  const id = String(formData.get('id') ?? '')
+  const articleSlug = String(formData.get('articleSlug') ?? '')
+  const note = String(formData.get('note') ?? '').trim() || undefined
+  await setCommentStatus(id, { status: 'rejected', reviewerId: moderator.id, reviewNote: note })
+  revalidatePath('/moderation')
+  revalidatePath(`/articles/${articleSlug}`)
+}
+
 export default async function ModerationPage() {
   const moderator = await requireRole('moderator')
   const pending = await listSubmissions({ status: 'pending' })
   const approved = await listSubmissions({ status: 'approved' })
   const rejected = await listSubmissions({ status: 'rejected' })
+  const pendingComments = await listComments({ status: 'pending' })
+  const approvedComments = await listComments({ status: 'approved' })
+  const rejectedComments = await listComments({ status: 'rejected' })
   const qualityReports = new Map(pending.map((sub) => [sub.id, evaluateSubmissionQuality(sub)]))
   const qualityTotals = pending.reduce(
     (totals, sub) => {
@@ -73,6 +106,10 @@ export default async function ModerationPage() {
           <p className="mt-1 text-sm text-ink-500">
             Signed in as <strong>{moderator.username}</strong> · {pending.length} pending,
             {' '}{approved.length} approved, {rejected.length} rejected
+          </p>
+          <p className="mt-1 text-xs text-ink-500">
+            Feedback: {pendingComments.length} pending, {approvedComments.length} approved,
+            {' '}{rejectedComments.length} rejected
           </p>
           <p className="mt-1 text-xs text-ink-500">
             Quality checks: {qualityTotals.ready} ready, {qualityTotals.needs_review} needs review,
@@ -170,6 +207,74 @@ export default async function ModerationPage() {
           })}
         </ul>
       )}
+
+      <section className="mt-12">
+        <div className="mb-4 flex flex-wrap items-baseline justify-between gap-3">
+          <h2 className="text-2xl font-semibold tracking-tight">Feedback queue</h2>
+          <p className="text-sm text-ink-500">
+            {pendingComments.length} pending {pendingComments.length === 1 ? 'item' : 'items'}
+          </p>
+        </div>
+
+        {pendingComments.length === 0 ? (
+          <p className="rounded-md border border-ink-100 bg-white p-6 text-sm text-ink-500">
+            No pending feedback.
+          </p>
+        ) : (
+          <ul className="space-y-4">
+            {pendingComments.map((comment) => (
+              <li key={comment.id} className="rounded-2xl border border-ink-100 bg-white p-6">
+                <div className="flex flex-wrap items-center justify-between gap-3">
+                  <div>
+                    <h3 className="font-semibold text-ink-900">
+                      Feedback on /articles/{comment.articleSlug}
+                    </h3>
+                    <p className="mt-1 text-xs text-ink-500">
+                      by {comment.authorName} · {feedbackLabels[comment.kind]} ·{' '}
+                      <time dateTime={comment.submittedAt}>
+                        {new Date(comment.submittedAt).toLocaleString()}
+                      </time>
+                    </p>
+                  </div>
+                </div>
+                <p className="mt-4 whitespace-pre-wrap text-sm leading-6 text-ink-700">
+                  {comment.body}
+                </p>
+
+                <div className="mt-4 grid gap-3 sm:grid-cols-[1fr_auto_auto]">
+                  <input
+                    form={`approve-comment-${comment.id}`}
+                    type="text"
+                    name="note"
+                    placeholder="Moderator note (optional)"
+                    className="rounded-md border border-ink-100 bg-white px-3 py-2 text-sm"
+                  />
+                  <form id={`approve-comment-${comment.id}`} action={approveComment}>
+                    <input type="hidden" name="id" value={comment.id} />
+                    <input type="hidden" name="articleSlug" value={comment.articleSlug} />
+                    <button
+                      type="submit"
+                      className="rounded-md bg-emerald-600 px-3 py-2 text-sm font-semibold text-white hover:bg-emerald-700"
+                    >
+                      Approve
+                    </button>
+                  </form>
+                  <form action={rejectComment}>
+                    <input type="hidden" name="id" value={comment.id} />
+                    <input type="hidden" name="articleSlug" value={comment.articleSlug} />
+                    <button
+                      type="submit"
+                      className="rounded-md border border-red-300 bg-white px-3 py-2 text-sm font-semibold text-red-700 hover:bg-red-50"
+                    >
+                      Reject
+                    </button>
+                  </form>
+                </div>
+              </li>
+            ))}
+          </ul>
+        )}
+      </section>
     </div>
   )
 }
