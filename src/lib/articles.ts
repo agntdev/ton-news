@@ -1,3 +1,5 @@
+import { listSubmissions, type Submission } from './submissions'
+
 export interface Article {
   slug: string
   title: string
@@ -21,3 +23,23 @@ export const SAMPLE_ARTICLES: Article[] = [
     tags: ['announcement'],
   },
 ]
+
+function submissionToArticle(submission: Submission): Article {
+  return {
+    slug: submission.id,
+    title: submission.title,
+    excerpt: submission.excerpt,
+    body: submission.body,
+    author: submission.authorName,
+    publishedAt: (submission.reviewedAt ?? submission.submittedAt).slice(0, 10),
+    tags: submission.tags,
+  }
+}
+
+export async function listPublishedArticles(): Promise<Article[]> {
+  const approved = await listSubmissions({ status: 'approved' })
+  const fromSubmissions = approved.map(submissionToArticle)
+  return [...fromSubmissions, ...SAMPLE_ARTICLES].sort((a, b) =>
+    b.publishedAt.localeCompare(a.publishedAt),
+  )
+}
