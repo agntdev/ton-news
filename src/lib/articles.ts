@@ -1,4 +1,5 @@
 import { listSubmissions, type Submission } from './submissions'
+import { getTonStorageArticle, listTonStorageArticleRefs } from './ton-storage'
 
 export interface Article {
   slug: string
@@ -39,12 +40,24 @@ function submissionToArticle(submission: Submission): Article {
 export async function listPublishedArticles(): Promise<Article[]> {
   const approved = await listSubmissions({ status: 'approved' })
   const fromSubmissions = approved.map(submissionToArticle)
-  return [...fromSubmissions, ...SAMPLE_ARTICLES].sort((a, b) =>
+  const tonStorageRefs = await listTonStorageArticleRefs()
+  const fromTonStorage = tonStorageRefs.map((ref) => ({
+    slug: ref.slug,
+    title: ref.title,
+    excerpt: ref.excerpt,
+    body: '',
+    author: ref.author,
+    publishedAt: ref.publishedAt,
+    tags: ref.tags,
+  }))
+  return [...fromTonStorage, ...fromSubmissions, ...SAMPLE_ARTICLES].sort((a, b) =>
     b.publishedAt.localeCompare(a.publishedAt),
   )
 }
 
 export async function getArticleBySlug(slug: string): Promise<Article | null> {
+  const tonStorageArticle = await getTonStorageArticle(slug)
+  if (tonStorageArticle) return tonStorageArticle
   const articles = await listPublishedArticles()
   return articles.find((article) => article.slug === slug) ?? null
 }
