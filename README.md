@@ -34,6 +34,7 @@ Editorial operations:
 
 - [`docs/CONTENT_CALENDAR.md`](docs/CONTENT_CALENDAR.md) defines the publishing cadence, topic pillars, and starter calendar.
 - [`docs/TON_STORAGE.md`](docs/TON_STORAGE.md) defines article export, BagID registration, and retrieval from TON Storage.
+- [`docs/CONTENT_AUTOMATION.md`](docs/CONTENT_AUTOMATION.md) defines scheduled publishing, backups, and recovery.
 - [`docs/EDITORIAL_GUIDELINES.md`](docs/EDITORIAL_GUIDELINES.md) defines the style, sourcing, SEO, and submission standards.
 - [`docs/QUALITY_CONTROL.md`](docs/QUALITY_CONTROL.md) defines automated submission quality checks and reporting.
 - [`docs/REVIEW_PROCESS.md`](docs/REVIEW_PROCESS.md) defines the submission review workflow and approval checklist.

@@ -11,6 +11,9 @@
     "typecheck": "tsc --noEmit",
     "ton-storage:export": "node scripts/ton-storage.mjs export",
     "ton-storage:register": "node scripts/ton-storage.mjs register",
+    "content:backup": "node scripts/content-maintenance.mjs backup",
+    "content:publish-due": "node scripts/content-maintenance.mjs publish-due",
+    "content:restore": "node scripts/content-maintenance.mjs restore",
     "seed": "node scripts/seed-users.mjs"
   },
   "dependencies": {

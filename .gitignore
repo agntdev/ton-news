@@ -17,3 +17,6 @@ data/users.json
 data/submissions.json
 data/ton-storage-manifest.json
 ton-storage-export/
+data/articles.json
+data/content-schedule.json
+backups/

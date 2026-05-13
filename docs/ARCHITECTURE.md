@@ -36,6 +36,8 @@ tasks/                   Bounty task specs (T01.md … T16.md)
   rhythm, topic pillars, starter calendar, and article brief template.
 - [`TON_STORAGE.md`](TON_STORAGE.md) defines article export, BagID
   registration, and gateway retrieval from TON Storage.
+- [`CONTENT_AUTOMATION.md`](CONTENT_AUTOMATION.md) defines scheduled publishing,
+  content backups, and recovery commands.
 - [`EDITORIAL_GUIDELINES.md`](EDITORIAL_GUIDELINES.md) defines style,
   sourcing, SEO, and submission standards.
 - [`QUALITY_CONTROL.md`](QUALITY_CONTROL.md) defines automated submission
