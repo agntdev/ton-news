@@ -1,12 +1,13 @@
 import Link from 'next/link'
-import { SAMPLE_ARTICLES } from '@/lib/articles'
+import { listPublishedArticles } from '@/lib/articles'
 import { ArticleCard } from '@/components/article-card'
 
-export const dynamic = 'force-static'
+export const dynamic = 'force-dynamic'
 
-export default function HomePage() {
-  const featured = SAMPLE_ARTICLES[0]
-  const recent = SAMPLE_ARTICLES.slice(1)
+export default async function HomePage() {
+  const articles = await listPublishedArticles()
+  const featured = articles[0]
+  const recent = articles.slice(1)
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:py-16">
