@@ -1,4 +1,5 @@
 import { promises as fs } from 'node:fs'
+import { randomBytes } from 'node:crypto'
 import path from 'node:path'
 import { hashPassword, verifyPassword } from './passwords'
 
@@ -42,6 +43,11 @@ export async function findUserById(id: string): Promise<UserRecord | null> {
   return users.find((u) => u.id === id) ?? null
 }
 
+export async function findUserByEmail(email: string): Promise<UserRecord | null> {
+  const users = await readUsers()
+  return users.find((u) => u.email.toLowerCase() === email.toLowerCase()) ?? null
+}
+
 export async function createUser(input: {
   username: string
   email: string
@@ -70,4 +76,35 @@ export async function authenticateUser(username: string, password: string): Prom
   if (!user) return null
   const ok = await verifyPassword(password, user.passwordHash)
   return ok ? user : null
+}
+
+export async function findOrCreateSocialUser(input: {
+  provider: 'github'
+  providerId: string
+  username: string
+  email?: string
+}): Promise<UserRecord> {
+  const email = input.email ?? `${input.provider}-${input.providerId}@ton-news.local`
+  const existingByEmail = await findUserByEmail(email)
+  if (existingByEmail) return existingByEmail
+
+  const baseUsername = `${input.provider}-${input.username}`.toLowerCase().replace(/[^a-z0-9_-]/g, '-')
+  const username = await uniqueUsername(baseUsername)
+  return createUser({
+    username,
+    email,
+    password: randomBytes(32).toString('hex'),
+    role: 'author',
+  })
+}
+
+async function uniqueUsername(base: string): Promise<string> {
+  const users = await readUsers()
+  const taken = new Set(users.map((user) => user.username.toLowerCase()))
+  if (!taken.has(base)) return base
+  for (let i = 2; i < 1000; i++) {
+    const candidate = `${base}-${i}`
+    if (!taken.has(candidate)) return candidate
+  }
+  throw new Error('Could not allocate social username')
 }

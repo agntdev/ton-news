@@ -85,6 +85,32 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
         </h1>
         <p className="mt-4 text-lg text-ink-500">{article.excerpt}</p>
         <p className="mt-4 text-sm text-ink-500">By {article.author}</p>
+        <div className="mt-6 flex flex-wrap gap-2">
+          <a
+            href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(articleUrl)}&text=${encodeURIComponent(article.title)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="rounded-md border border-ink-100 bg-white px-3 py-2 text-sm font-semibold text-ink-700 hover:bg-ink-50"
+          >
+            Share on X
+          </a>
+          <a
+            href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(articleUrl)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="rounded-md border border-ink-100 bg-white px-3 py-2 text-sm font-semibold text-ink-700 hover:bg-ink-50"
+          >
+            Share on LinkedIn
+          </a>
+          <a
+            href={`https://t.me/share/url?url=${encodeURIComponent(articleUrl)}&text=${encodeURIComponent(article.title)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="rounded-md border border-ink-100 bg-white px-3 py-2 text-sm font-semibold text-ink-700 hover:bg-ink-50"
+          >
+            Share on Telegram
+          </a>
+        </div>
       </header>
 
       <div className="mt-10 space-y-5 text-base leading-7 text-ink-700">

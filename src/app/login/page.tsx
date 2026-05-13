@@ -2,6 +2,7 @@ import { redirect } from 'next/navigation'
 import type { Metadata } from 'next'
 import { authenticateUser } from '@/lib/users'
 import { loginUser } from '@/lib/auth'
+import { isGithubLoginConfigured } from '@/lib/social-auth'
 
 export const metadata: Metadata = {
   title: 'Sign in',
@@ -55,6 +56,16 @@ export default function LoginPage({ searchParams }: PageProps) {
           Username and password are required.
         </p>
       ) : null}
+      {error === 'social_unavailable' ? (
+        <p className="mt-4 rounded-md border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-900">
+          GitHub login is not configured for this deployment.
+        </p>
+      ) : null}
+      {error === 'social_failed' ? (
+        <p className="mt-4 rounded-md border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-800">
+          Social login failed. Please try again or use a seeded account.
+        </p>
+      ) : null}
 
       <form action={login} className="mt-6 space-y-4">
         <input type="hidden" name="next" value={next} />
@@ -91,6 +102,22 @@ export default function LoginPage({ searchParams }: PageProps) {
           Sign in
         </button>
       </form>
+
+      <div className="mt-6 border-t border-ink-100 pt-6">
+        {isGithubLoginConfigured() ? (
+          <a
+            href={`/api/auth/social/github?next=${encodeURIComponent(next)}`}
+            className="inline-flex w-full justify-center rounded-md border border-ink-100 bg-white px-4 py-2 text-sm font-semibold text-ink-900 hover:bg-ink-50"
+          >
+            Continue with GitHub
+          </a>
+        ) : (
+          <p className="rounded-md border border-ink-100 bg-white px-3 py-2 text-sm text-ink-500">
+            GitHub login can be enabled with <code>GITHUB_CLIENT_ID</code> and{' '}
+            <code>GITHUB_CLIENT_SECRET</code>.
+          </p>
+        )}
+      </div>
 
       <p className="mt-6 text-xs text-ink-500">
         Seeded accounts for local development are listed in <code>data/users.json</code>.
