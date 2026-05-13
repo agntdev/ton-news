@@ -35,6 +35,11 @@ Editorial operations:
 - [`docs/EDITORIAL_GUIDELINES.md`](docs/EDITORIAL_GUIDELINES.md) defines the style, sourcing, SEO, and submission standards.
 - [`docs/REVIEW_PROCESS.md`](docs/REVIEW_PROCESS.md) defines the submission review workflow and approval checklist.
 
+Community operations:
+
+- [`docs/COMMUNITY_GUIDELINES.md`](docs/COMMUNITY_GUIDELINES.md) defines acceptable content and behavior.
+- [`docs/MODERATION_POLICY.md`](docs/MODERATION_POLICY.md) defines reporting, triage, enforcement, and appeals.
+
 ## Project goals
 
 1. **SEO first.** Static-rendered HTML, semantic markup, complete metadata, fast pageloads.

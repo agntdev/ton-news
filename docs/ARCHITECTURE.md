@@ -39,6 +39,13 @@ tasks/                   Bounty task specs (T01.md … T16.md)
 - [`REVIEW_PROCESS.md`](REVIEW_PROCESS.md) defines roles, moderation steps,
   review criteria, and decision notes.
 
+## Community operations
+
+- [`COMMUNITY_GUIDELINES.md`](COMMUNITY_GUIDELINES.md) defines acceptable
+  content, expected behavior, prohibited content, and enforcement actions.
+- [`MODERATION_POLICY.md`](MODERATION_POLICY.md) defines report intake, triage,
+  moderation workflow, appeals, and moderator note templates.
+
 ## Conventions
 
 - **Pages:** Server components by default. Mark client components with `'use client'`.
