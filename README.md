@@ -28,6 +28,7 @@ Other scripts:
 - [Tailwind CSS 3](https://tailwindcss.com/)
 
 See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) for the full architecture overview and conventions.
+See [`docs/ROADMAP.md`](docs/ROADMAP.md) for future content and feature priorities.
 
 Editorial operations:
 
