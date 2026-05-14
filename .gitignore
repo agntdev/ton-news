@@ -19,4 +19,5 @@ data/ton-storage-manifest.json
 ton-storage-export/
 data/articles.json
 data/content-schedule.json
+data/analytics-events.json
 backups/

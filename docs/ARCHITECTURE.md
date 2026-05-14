@@ -40,6 +40,8 @@ tasks/                   Bounty task specs (T01.md … T16.md)
   content backups, and recovery commands.
 - [`EDITORIAL_GUIDELINES.md`](EDITORIAL_GUIDELINES.md) defines style,
   sourcing, SEO, and submission standards.
+- [`ANALYTICS.md`](ANALYTICS.md) defines privacy-friendly page-view tracking,
+  SEO reporting, and dashboard operations.
 - [`QUALITY_CONTROL.md`](QUALITY_CONTROL.md) defines automated submission
   quality checks, scoring, and moderation queue reporting.
 - [`REVIEW_PROCESS.md`](REVIEW_PROCESS.md) defines roles, moderation steps,
