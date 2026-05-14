@@ -14,6 +14,7 @@
     "content:backup": "node scripts/content-maintenance.mjs backup",
     "content:publish-due": "node scripts/content-maintenance.mjs publish-due",
     "content:restore": "node scripts/content-maintenance.mjs restore",
+    "seo:report": "node scripts/seo-report.mjs",
     "seed": "node scripts/seed-users.mjs"
   },
   "dependencies": {
