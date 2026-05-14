@@ -1,3 +1,5 @@
+import { promises as fs } from 'node:fs'
+import path from 'node:path'
 import { listSubmissions, type Submission } from './submissions'
 import { getTonStorageArticle, listTonStorageArticleRefs } from './ton-storage'
 
@@ -25,6 +27,18 @@ export const SAMPLE_ARTICLES: Article[] = [
   },
 ]
 
+const ARTICLES_FILE = path.join(process.cwd(), 'data', 'articles.json')
+
+async function readStoredArticles(): Promise<Article[]> {
+  try {
+    const raw = await fs.readFile(ARTICLES_FILE, 'utf8')
+    return JSON.parse(raw) as Article[]
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code === 'ENOENT') return []
+    throw error
+  }
+}
+
 function submissionToArticle(submission: Submission): Article {
   return {
     slug: submission.id,
@@ -50,7 +64,8 @@ export async function listPublishedArticles(): Promise<Article[]> {
     publishedAt: ref.publishedAt,
     tags: ref.tags,
   }))
-  return [...fromTonStorage, ...fromSubmissions, ...SAMPLE_ARTICLES].sort((a, b) =>
+  const stored = await readStoredArticles()
+  return [...fromTonStorage, ...stored, ...fromSubmissions, ...SAMPLE_ARTICLES].sort((a, b) =>
     b.publishedAt.localeCompare(a.publishedAt),
   )
 }
