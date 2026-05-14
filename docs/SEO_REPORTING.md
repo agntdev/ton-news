@@ -3,6 +3,12 @@
 Ton News includes a local SEO reporting command for editorial and release
 checks.
 
+## Dashboard
+
+Visit `/seo` to review the current article dashboard. It shows article count,
+average score, total alerts, critical alerts, alert distribution, and per-article
+title/body metrics with actionable warnings.
+
 ## Run the report
 
 ```bash
