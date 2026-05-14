@@ -57,6 +57,8 @@ tasks/                   Bounty task specs (T01.md … T16.md)
   content, expected behavior, prohibited content, and enforcement actions.
 - [`MODERATION_POLICY.md`](MODERATION_POLICY.md) defines report intake, triage,
   moderation workflow, appeals, and moderator note templates.
+- [`SOCIAL_INTEGRATION.md`](SOCIAL_INTEGRATION.md) defines article sharing,
+  optional GitHub login, and social content strategy.
 
 ## Roadmap
 

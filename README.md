@@ -46,6 +46,7 @@ Community operations:
 
 - [`docs/COMMUNITY_GUIDELINES.md`](docs/COMMUNITY_GUIDELINES.md) defines acceptable content and behavior.
 - [`docs/MODERATION_POLICY.md`](docs/MODERATION_POLICY.md) defines reporting, triage, enforcement, and appeals.
+- [`docs/SOCIAL_INTEGRATION.md`](docs/SOCIAL_INTEGRATION.md) defines social sharing, GitHub login setup, and content strategy.
 
 ## Project goals
 
