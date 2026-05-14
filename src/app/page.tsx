@@ -31,19 +31,19 @@ export default async function HomePage() {
   }
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:py-16">
+    <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-12 lg:py-16">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
-      <section className="rounded-3xl bg-gradient-to-br from-brand to-brand-dark px-6 py-12 text-white shadow-sm sm:px-10 sm:py-16">
+      <section className="rounded-2xl bg-gradient-to-br from-brand to-brand-dark px-5 py-10 text-white shadow-sm sm:rounded-3xl sm:px-10 sm:py-16">
         <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/70">
           The Open Network · Daily
         </p>
         <h1 className="mt-3 text-3xl font-semibold leading-tight tracking-tight sm:text-5xl">
           Ton News
         </h1>
-        <p className="mt-4 max-w-2xl text-base text-white/85 sm:text-lg">
+        <p className="mt-4 max-w-2xl text-base leading-7 text-white/85 sm:text-lg">
           Curated, SEO-focused coverage of The Open Network. Protocol updates,
           validator stats, ecosystem news, and long-form analysis — open to
           community submissions.
