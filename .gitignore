@@ -15,3 +15,5 @@ next-env.d.ts
 package-lock.json
 data/users.json
 data/submissions.json
+data/ton-storage-manifest.json
+ton-storage-export/

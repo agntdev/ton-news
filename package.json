@@ -9,6 +9,8 @@
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
+    "ton-storage:export": "node scripts/ton-storage.mjs export",
+    "ton-storage:register": "node scripts/ton-storage.mjs register",
     "seed": "node scripts/seed-users.mjs"
   },
   "dependencies": {
